@@ -1,11 +1,11 @@
-%%  INTERLEAVED TOROIDAL TRANSFORMER AUTOMATION SCRIPT IN COMSOL
+%%  TOROIDAL INDUCTOR AUTOMATION SCRIPT IN COMSOL
 %
 %   Author: Zikang Tong
 %   Affiliation: Stanford Universiy
-%   Description: This script determines the inductance and ac loss of an
-%   interleaved toroidal transformer in COMSOL. The input variables include
-%   the geometric parameters such as radius and height as well as the 
-%   number of turns for each toroid. All units are in mm. 
+%   Description: This script determines the inductance and ac loss of a
+%   toroidal inductor in COMSOL. The input variables include the geometric
+%   parameters such as radius and height as well as the number of turns for
+%   each toroid. All units are in mm. 
 %   
 %   Variable Defintions: 
 %   ri = inner radius
@@ -163,36 +163,27 @@ model.geom('geom1').feature('openning').selection('input').set({'wp3'});
 model.geom('geom1').feature('openning').setIndex('distance', h-t, 0);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
-%   Create the slicer for the secondary winding
+%   Unions the slicer
 model.geom('geom1').create('prim_slicer', 'Union');
 post_list{end+1} = 'angled_slicer';
 post_list{end+1} = 'angled_slicer_rot';
 model.geom('geom1').feature('prim_slicer').selection('input').set(post_list);
-model.geom('geom1').create('sec_slicer', 'Copy');
-model.geom('geom1').feature('sec_slicer').selection('input').set('prim_slicer');
-model.geom('geom1').create('sec_slicer_rot', 'Rotate');
-model.geom('geom1').feature('sec_slicer_rot').selection('input').set('sec_slicer');
-model.geom('geom1').feature('sec_slicer_rot').set('rot', 360/turns/2);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %   Takes difference
 model.geom('geom1').create('dif1', 'Difference');
 model.geom('geom1').feature('dif1').selection('input').set('rev1');
-model.geom('geom1').feature('dif1').selection('input2').set({'prim_slicer', 'sec_slicer_rot', 'openning'});
+model.geom('geom1').feature('dif1').selection('input2').set({'prim_slicer', 'openning'});
 model.geom('geom1').create('Final_rot', 'Rotate');
 model.geom('geom1').feature('Final_rot').selection('input').set('dif1');
 model.geom('geom1').feature('Final_rot').set('rot', -360/turns);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
-%   Creates the lumped ports
+%   Creates the lumped ports and the boundary
 model.geom('geom1').create('blk3', 'Block');
-model.geom('geom1').create('blk4', 'Block');
-model.geom('geom1').feature('blk4').set('base', 'center');
-model.geom('geom1').feature('blk4').set('size', [1,1,h-t]);
-model.geom('geom1').feature('blk4').set('pos', [ro,-t,0]);
 model.geom('geom1').feature('blk3').set('base', 'center');
 model.geom('geom1').feature('blk3').set('size', [1,1,h-t]);
-model.geom('geom1').feature('blk3').set('pos', [ro,t,0]);
+model.geom('geom1').feature('blk3').set('pos', [ro,0,0]);
 model.geom('geom1').create('sph1', 'Sphere');
 model.geom('geom1').feature('sph1').set('r', ro*2);
 model.geom('geom1').run;
@@ -201,20 +192,17 @@ model.geom('geom1').run;
 %   Creates the selections
 %   Creating geometric definitions
 model.selection.create('Winding', 'Explicit');
-model.selection('Winding').set([2,3,4,5]);
+model.selection('Winding').set([2,3]);
 model.selection.create('Non_conducting', 'Explicit');
-model.selection('Non_conducting').set([1,6,7]);
+model.selection('Non_conducting').set([1,4]);
 model.selection.create('Magnetic_Field', 'Explicit');
-model.selection('Magnetic_Field').set([1,6,7]);
+model.selection('Magnetic_Field').set([1,4]);
 model.selection.create('Conducting_Boundaries', 'Explicit');
 model.selection('Conducting_Boundaries').geom('geom1', 3, 2, {'exterior'});
-model.selection('Conducting_Boundaries').set([2,3,4,5]);
+model.selection('Conducting_Boundaries').set([2,3]);
 model.selection.create('Port1', 'Explicit');
 model.selection('Port1').geom('geom1', 3, 2, {'exterior'});
-model.selection('Port1').set(6);
-model.selection.create('Port2', 'Explicit');
-model.selection('Port2').geom('geom1', 3, 2, {'exterior'});
-model.selection('Port2').set(7);
+model.selection('Port1').set(4);
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%
 % %   Creates the materials
@@ -312,17 +300,10 @@ model.physics('mf').feature('lport1').set('ahPort', {'0' '0' '1'});
 model.physics('mf').feature('lport1').set('TerminalType', 1, 'Current');
 model.physics('mf').feature('lport1').set('hPort', 1, (h-t)/1000);%units in m
 model.physics('mf').feature('lport1').set('wPort', 1, 0.004);%units in m
-model.physics('mf').feature.create('lport2', 'LumpedPort', 2);
-model.physics('mf').feature('lport2').set('PortType', 1, 'UserDefined');
-model.physics('mf').feature('lport2').set('ahPort', {'0' '0' '1'});
-model.physics('mf').feature('lport2').set('TerminalType', 1, 'Current');
-model.physics('mf').feature('lport2').set('hPort', 1, (h-t)/1000);%units in m
-model.physics('mf').feature('lport2').set('wPort', 1, 0.004);%units in m
 model.physics('mf').prop('MeshControl').set('EnableMeshControl', true);
 model.physics('mf').feature('lport1').selection.named('Port1');
-model.physics('mf').feature('lport2').selection.named('Port2');
 model.physics('mf').feature('lport1').set('I0', I_prim);
-model.physics('mf').feature('lport2').set('I0', I_sec);
+
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %   Create mesh
 model.mesh.create('mesh1', 'geom1');
@@ -394,16 +375,13 @@ model.result('pg1').run;
 %   Get impedances
 model.result.numerical.create('gev1', 'EvalGlobal');
 model.result.numerical('gev1').setIndex('expr', 'mf.Zport_1', 1);
-model.result.numerical('gev1').setIndex('expr', 'mf.Zport_2', 1);
 model.result.table.create('tbl1', 'Table');
 model.result.numerical('gev1').set('table', 'tbl1');
 model.result.numerical('gev1').setResult;
 table = model.result.table('tbl1').getReal;
-Z_prim_real = table(2);
-Z_sec_real = table(3);
+Z_real = table(2);
 table = model.result.table('tbl1').getImag;
-Z_prim_imag = table(2);
-Z_sec_imag = table(3);
+Z_imag = table(2);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %   Save file
