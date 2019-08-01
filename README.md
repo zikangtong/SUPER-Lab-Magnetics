@@ -1,4 +1,4 @@
-# stanford_power_electronics
+# 3-D Printed Inductors and Transformer FEM Modeling
 
 Author: Zikang Tong
 Affiliation: Stanford University
