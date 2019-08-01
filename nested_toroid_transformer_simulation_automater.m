@@ -342,11 +342,11 @@ model.geom('geom1').feature('rot2').set('rot', -360/in_turns);
 model.geom('geom1').create('blk3', 'Block');
 model.geom('geom1').create('blk4', 'Block');
 model.geom('geom1').feature('blk4').set('base', 'center');
-model.geom('geom1').feature('blk4').set('size', [1,1,out_h-out_t]);
+model.geom('geom1').feature('blk4').set('size', [out_t/2,out_t/2,out_h-out_t]);
 model.geom('geom1').feature('blk4').set('pos', [out_ro,0,0]);
 model.geom('geom1').feature('blk3').set('base', 'center');
-model.geom('geom1').feature('blk3').set('size', [1,1,in_h-in_t]);
-model.geom('geom1').feature('blk3').set('pos', [in_ro-in_t,0,0]);
+model.geom('geom1').feature('blk3').set('size', [in_t/2,in_t/2,in_h-in_t]);
+model.geom('geom1').feature('blk3').set('pos', [in_ro,0,0]);
 model.geom('geom1').create('sph1', 'Sphere');
 model.geom('geom1').feature('sph1').set('r', out_ro*2);
 model.geom('geom1').run;
@@ -468,13 +468,13 @@ model.physics('mf').feature('lport1').set('PortType', 1, 'UserDefined');
 model.physics('mf').feature('lport1').set('ahPort', {'0' '0' '1'});
 model.physics('mf').feature('lport1').set('TerminalType', 1, 'Current');
 model.physics('mf').feature('lport1').set('hPort', 1, (in_h-in_t)/1000);%units in m
-model.physics('mf').feature('lport1').set('wPort', 1, 0.004);%units in m
+model.physics('mf').feature('lport1').set('wPort', 1, in_t*2/1000);%units in m
 model.physics('mf').feature.create('lport2', 'LumpedPort', 2);
 model.physics('mf').feature('lport2').set('PortType', 1, 'UserDefined');
 model.physics('mf').feature('lport2').set('ahPort', {'0' '0' '1'});
 model.physics('mf').feature('lport2').set('TerminalType', 1, 'Current');
 model.physics('mf').feature('lport2').set('hPort', 1, (out_h-out_t)/1000);%units in m
-model.physics('mf').feature('lport2').set('wPort', 1, 0.004);%units in m
+model.physics('mf').feature('lport2').set('wPort', 1, out_t*2/1000);%units in m
 model.physics('mf').prop('MeshControl').set('EnableMeshControl', true);
 model.physics('mf').feature('lport1').selection.named('port1');
 model.physics('mf').feature('lport2').selection.named('port2');
