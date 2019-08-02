@@ -25,3 +25,5 @@ The first line, **mph_fileloc**, specifies the folder path of where to save the 
 **turns** refers to number of turns.
 
 All units are in mm and below shows a figure of a toroidal inductor with the parameters labeled.
+
+<img src = "../images/toroid1.png" width = "300"> <img src = "../images/toroid2.png" width = "400">
