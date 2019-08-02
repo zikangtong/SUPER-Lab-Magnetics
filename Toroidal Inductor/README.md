@@ -31,3 +31,7 @@ All units are in mm and below shows a figure of a toroidal inductor with the par
 <img src = "../images/toroid1.png" width = "300"> <img src = "../images/toroid2.png" width = "400">
 
 ### Simulation Parameters Initialization
+For simulation, the toroid is injected by a lumped port current source with amplitude **I_prim** and frequency of **freq**. The units are in A and Hz. 
+
+### Simulation Results
+Once these parameters are initialized, you are ready to run the simulation by pressing the green run button. After the script has completed running, it outputs 2 variables, **Z_imag**, which is the imaginary component of the impedance in Ohms and **Z_real**, the real component. 
