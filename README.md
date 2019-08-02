@@ -2,7 +2,7 @@
 
 ##### Author: Zikang Tong
 ##### Affiliation: Stanford University Power Electronics Laboratory
-<img src = "images/toroid_opt_xsection.PNG" width = "100">
+<img src = "images/superlablogo1.PNG" width = "100">
 
 These files require both MATLAB and a valid COMSOL 5.4 license file which contains the AC/DC module and Livelink for MATLAB module. This repository contains all FEM model generation scripts in MATLAB. Below are instructions to run each file.
 
