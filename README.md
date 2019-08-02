@@ -8,4 +8,6 @@ These files require both MATLAB and a valid COMSOL 5.4 license file which contai
 
 ## Basic Inductor Modeling
 
-Files: The MATLAB script that generates the COMSOL is located at the [link](MATLAB_scripts/toroidal_inductor.m)
+Files: The MATLAB script that generates the COMSOL is located at the [link](MATLAB_scripts/toroidal_inductor.m).
+
+Tutorial: 
