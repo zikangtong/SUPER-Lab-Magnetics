@@ -5,7 +5,7 @@
 This folder contains documents and files instructing the user how to model a 3-D printed toroidal inductor in COMSOL. 
 **To start, you must open the COMSOL Multiphysics 5.4a with MATLAB application.**
 
-## Scripting Tutorial
+## Script Usage Tutorial
 The script [toroidal_inductor.m](toroidal_inductor.m) contains the code used to retrieve the AC impedance of a toroidal inductor with square cross-section. The user sets the parameters shown below.
 
 <img src = "../images/toroidal_inductor_intialization.PNG" width = "400">
@@ -34,4 +34,6 @@ All units are in mm and below shows a figure of a toroidal inductor with the par
 For simulation, the toroid is injected by a lumped port current source with amplitude **I_prim** and frequency of **freq**. The units are in A and Hz. 
 
 ### Simulation Results
-Once these parameters are initialized, you are ready to run the simulation by pressing the green run button. After the script has completed running, it outputs 2 variables, **Z_imag**, which is the imaginary component of the impedance in Ohms and **Z_real**, the real component. 
+Once these parameters are initialized, you are ready to run the simulation by pressing the green run button. After the script has completed running, it outputs 2 variables, **Z_imag**, which is the imaginary component of the impedance in Ohms and **Z_real**, the real component. These variables can be used to determine the AC losses as well as the inductance of the structures (assuming the frequency is not close to resonance).
+
+Furthermore, you can also retrieve 3D FEM plots from this simulation.
