@@ -18,4 +18,10 @@ The first line, **mph_fileloc**, specifies the folder path of where to save the 
 
 **h** refers to the height of the toroid.
 
+**t** refers to the thickness of the toroid. Note that the structure is hollow so the thickness determines the structural robustness of the print.
 
+**separation** refers to the distance spacing between each winding. This determines the voltage isolation capabilities of the structure.
+
+**turns** refers to number of turns.
+
+All units are in mm and below shows a figure of a toroidal inductor with the parameters labeled.
