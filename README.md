@@ -9,3 +9,4 @@ This github repository contains all design automation scripts for our groups 3-D
 
 
 ### [1. Basic Toroidal Inductor Modeling](Toroidal%20Inductor/)
+### [2. Basic Toroidal Inductor Modeling](Stacked%20Transformer/)
