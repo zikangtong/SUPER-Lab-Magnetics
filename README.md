@@ -8,4 +8,4 @@ These files require both MATLAB and a valid COMSOL 5.4 license file which contai
 
 ## Basic Inductor Modeling
 
-Files: The MATLAB script that generates the COMSOL 
+Files: The MATLAB script that generates the COMSOL  [stanford_power_electronics](MATLAB_scripts)
