@@ -1,7 +1,7 @@
 # 3-D Printed Inductors and Transformer FEM Modeling
 
 ##### Author: Zikang Tong
-##### Affiliation: Stanford University Power Electronics Laboratory
+##### Affiliation: Stanford University Power Electronics Laboratory [arbitrary case-insensitive reference text]: https://www.mozilla.org
 <img src = "images/superlablogo1.png" width = "100">
 
 ##### Description:
@@ -11,3 +11,4 @@ This github repository contains all design automation scripts for our groups 3-D
 ### [1. Basic Toroidal Inductor Modeling](Toroidal%20Inductor/)
 ### [2. Nested Transformer Modeling](Nested%20Transformer/)
 ### [3. Stacked Transformer Modeling](Stacked%20Transformer/)
+### [4. Interleaved Transformer Modeling](Interleaved%20Transformer/)
