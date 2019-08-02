@@ -1,7 +1,7 @@
 # 3-D Printed Inductors and Transformer FEM Modeling
 
 ##### Author: Zikang Tong
-##### Affiliation: Stanford University Power Electronics Laboratory,  Group Website: https://superlab.stanford.edu/
+##### Affiliation: Stanford University Power Electronics Laboratory: https://superlab.stanford.edu/
 <img src = "images/superlablogo1.png" width = "100">
 
 ##### Description:
