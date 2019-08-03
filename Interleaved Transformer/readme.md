@@ -9,18 +9,20 @@ This folder contains documents and files instructing the user how to model a 3-D
 The script [toroidal_inductor.m](toroidal_inductor.m) contains the code used to retrieve the AC impedance of a toroidal inductor with square cross-section. The user sets the parameters shown below.
 
 ```
-mph_fileloc = 'G:\My Drive\Magnetics Project\COMSOL\';^M
-mph_filename = 'delete.mph';
+mph_fileloc = 'G:\My Drive\Magnetics Project\COMSOL\';
+mph_filename = 'interleaved.mph';
 
-ri = 7.5; 
-ro = 15;
+ri = 12;
+ro = 18.5;
 h = 12.5;
-t = 1.5;
-separation = 1.5;
-turns = 10;
+t = 1;
+separation = 1 ;
+turns = 20;
 
 I_prim = 1;
+I_sec = 1;
 freq = 20e6;%units in Hz
+
 ```
 
 ### Toroid Geometry Initialization
