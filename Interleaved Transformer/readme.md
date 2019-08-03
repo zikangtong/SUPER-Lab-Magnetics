@@ -1,4 +1,4 @@
-# Basic Toroidal Inductor Modeling
+# Interleaved Transformer Modeling
 
 ##### Author: Zikang Tong
 ##### Description:
