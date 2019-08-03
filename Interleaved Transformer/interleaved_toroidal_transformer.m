@@ -7,7 +7,7 @@
 %   the geometric parameters such as radius and height as well as the 
 %   number of turns for each toroid. All units are in mm. 
 %   
-%   Variable Defintions: 
+%   Variable Definitions: 
 %   ri = inner radius
 %   ro = outer radius
 %   h = height
@@ -15,7 +15,7 @@
 %   separation = gap separation between adjacent windings
 
 mph_fileloc = 'G:\My Drive\Magnetics Project\COMSOL\';
-mph_filename = 'test_delete.mph';
+mph_filename = 'interleaved.mph';
 
 ri = 12;
 ro = 18.5;
@@ -122,7 +122,7 @@ for i = 1:turns-1
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
-%   Create outter posts
+%   Create outer posts
 model.geom('geom1').create('outpost1', 'Block');
 model.geom('geom1').feature('outpost1').set('size', [t*1.2, separation, h+t]);
 model.geom('geom1').feature('outpost1').set('base', 'center');
@@ -189,10 +189,20 @@ model.geom('geom1').create('blk3', 'Block');
 model.geom('geom1').create('blk4', 'Block');
 model.geom('geom1').feature('blk4').set('base', 'center');
 model.geom('geom1').feature('blk4').set('size', [t/2,t/2,h-t]);
-model.geom('geom1').feature('blk4').set('pos', [ro-t,-t*2,0]);
+model.geom('geom1').feature('blk4').set('pos', [ro-t,0,0]);
+model.geom('geom1').create('Rotate_blk4', 'Rotate');
+model.geom('geom1').feature('Rotate_blk4').selection('input').set('blk4');
+model.geom('geom1').feature('Rotate_blk4').set('axistype', 'z');
+model.geom('geom1').feature('Rotate_blk4').set('rot', 360/turns/4);
+
 model.geom('geom1').feature('blk3').set('base', 'center');
 model.geom('geom1').feature('blk3').set('size', [t/2,t/2,h-t]);
-model.geom('geom1').feature('blk3').set('pos', [ro-t,t*2,0]);
+model.geom('geom1').feature('blk3').set('pos', [ro-t,0,0]);
+model.geom('geom1').create('Rotate_blk3', 'Rotate');
+model.geom('geom1').feature('Rotate_blk3').selection('input').set('blk3');
+model.geom('geom1').feature('Rotate_blk3').set('axistype', 'z');
+model.geom('geom1').feature('Rotate_blk3').set('rot', -360/turns/4);
+
 model.geom('geom1').create('sph1', 'Sphere');
 model.geom('geom1').feature('sph1').set('r', ro*2);
 model.geom('geom1').run;
@@ -328,7 +338,7 @@ model.physics('mf').feature('lport2').set('I0', I_sec);
 model.mesh.create('mesh1', 'geom1');
 model.mesh('mesh1').automatic(false);
 model.mesh('mesh1').feature('size').set('custom', 'on');
-model.mesh('mesh1').feature('size').set('hmin', min(in_t, out_t)/100);
+model.mesh('mesh1').feature('size').set('hmin', t/100);
 model.mesh('mesh1').run;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
