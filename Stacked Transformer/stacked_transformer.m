@@ -277,14 +277,14 @@ model.physics('mf').feature.create('lport1', 'LumpedPort', 2);
 model.physics('mf').feature('lport1').set('PortType', 1, 'UserDefined');
 model.physics('mf').feature('lport1').set('ahPort', {'0' '0' '1'});
 model.physics('mf').feature('lport1').set('TerminalType', 1, 'Current');
-model.physics('mf').feature('lport1').set('hPort', 1, (h-t)/1000);%units in m
-model.physics('mf').feature('lport1').set('wPort', 1, 0.001*t/2*4);%units in m
+model.physics('mf').feature('lport1').set('hPort', 1, (2*(h+t+toroid_spacing)*4+h-t)/1000);%units in m
+model.physics('mf').feature('lport1').set('wPort', 1, 0.001*separation*4);%units in m
 model.physics('mf').feature.create('lport2', 'LumpedPort', 2);
 model.physics('mf').feature('lport2').set('PortType', 1, 'UserDefined');
 model.physics('mf').feature('lport2').set('ahPort', {'0' '0' '1'});
 model.physics('mf').feature('lport2').set('TerminalType', 1, 'Current');
-model.physics('mf').feature('lport2').set('hPort', 1, (h-t)/1000);%units in m
-model.physics('mf').feature('lport2').set('wPort', 1, 0.001*t/2*4);%units in m
+model.physics('mf').feature('lport2').set('hPort', 1, (2*(h+t+toroid_spacing)*4+h-t)/1000);%units in m
+model.physics('mf').feature('lport2').set('wPort', 1, 0.001*separation*4);%units in m
 model.physics('mf').prop('MeshControl').set('EnableMeshControl', true);
 model.physics('mf').feature('lport1').selection.named('Port1');
 model.physics('mf').feature('lport2').selection.named('Port2');
