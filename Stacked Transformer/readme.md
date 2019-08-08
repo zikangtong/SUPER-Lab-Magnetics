@@ -1,4 +1,4 @@
-# Nested Transformer Modeling
+# Stacked Transformer Modeling
 
 ##### Author: Zikang Tong
 ##### Description:
