@@ -9,26 +9,25 @@ This folder contains documents and files instructing the user how to model a 3-D
 The script [stacked_transformer.m](stacked_transformer.m) contains the code used to retrieve the AC impedance of a toroidal inductor with square cross-section. The user sets the parameters shown below.
 
 ```
-mph_fileloc = 'G:\My Drive\Magnetics Project\COMSOL\';
-mph_filename = 'nested_toroid.mph';
+ri = 8;
+ro = 15;
+h = 4;
+t = 1.5;
+separation = 1;
 
-out_ri = 8; 
-out_ro = 19;
-out_h = 12.5;
-out_t = 1.5;
-out_separation = 1.5;
-out_turns = 14;
+%   Step 2: provide a list of number of turns 
+%   Primary:
+prim_list = [4, 4, 4, 6, 6];
+%   Secondary:
+sec_list = [7, 9, 9, 9, 9];
+toroid_spacing = 1;
 
-in_ri = 12;
-in_ro = 16.3;
-in_h = 6.5;
-in_t = 1.5;
-in_separation = 1.5;
-in_turns = 20;
+I_prim=1;
+I_sec=0;
+freq = 20e6;
 
-I_prim = 1;
-I_sec = 1;
-freq = 20e6;%units in Hz
+mph_fileloc = 'G:\My Drive\Magnetics Project\MATLAB\';
+mph_filename = 'delete1.mph';
 
 ```
 
@@ -45,11 +44,13 @@ The first line, **mph_fileloc**, specifies the folder path of where to save the 
 
 **separation** refers to the distance spacing between each winding. This determines the voltage isolation capabilities of the structure.
 
-**turns** refers to number of turns.
+**prim_list** is the vector containing the number of turns for each toroid for the primary winding. If the vector length is 5, then there are 5 toroids. In the example, the vector list is [4, 4, 4, 6, 6] meaning the number of turns for each of the 5 toroids is 4, 4, 4, 6, and 6. 
+
+**sec_list** is the same as **prim_list** except it refers to the secondary winding.
+
+**toroid_spacing** refers to the gap distance between adjacent toroids.
 
 All units are in mm and below shows a figure of a toroidal inductor with the parameters labeled.
-
-If the variable begins with **out_**, it refers to the outer toroid. If the variable begins with **in_**, it refers to the inner toroid.
 
 ### Simulation Parameters Initialization
 For simulation, the transformer is injected by a lumped port current source with amplitude **I_prim** at the primary and **I_sec** at the secondary, and frequency of **freq**. The units are in A and Hz. 
