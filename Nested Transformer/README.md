@@ -6,7 +6,7 @@ This folder contains documents and files instructing the user how to model a 3-D
 **To start, you must open the COMSOL Multiphysics 5.4a with MATLAB application.**
 
 ## Script Usage Tutorial
-The script [interleaved_toroidal_transformer.m](interleaved_toroidal_transformer.m) contains the code used to retrieve the AC impedance of a toroidal inductor with square cross-section. The user sets the parameters shown below.
+The script [nested_toroid_transformer_simulation_automater.m](nested_toroid_transformer_simulation_automater.m) contains the code used to retrieve the AC impedance of a toroidal inductor with square cross-section. The user sets the parameters shown below.
 
 ```
 mph_fileloc = 'G:\My Drive\Magnetics Project\COMSOL\';
