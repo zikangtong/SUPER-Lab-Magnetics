@@ -10,14 +10,21 @@ The script [nested_toroid_transformer_simulation_automater.m](nested_toroid_tran
 
 ```
 mph_fileloc = 'G:\My Drive\Magnetics Project\COMSOL\';
-mph_filename = 'interleaved.mph';
+mph_filename = 'nested_toroid.mph';
 
-ri = 12;
-ro = 18.5;
-h = 12.5;
-t = 1;
-separation = 1 ;
-turns = 20;
+out_ri = 8; 
+out_ro = 19;
+out_h = 12.5;
+out_t = 1.5;
+out_separation = 1.5;
+out_turns = 14;
+
+in_ri = 12;
+in_ro = 16.3;
+in_h = 6.5;
+in_t = 1.5;
+in_separation = 1.5;
+in_turns = 20;
 
 I_prim = 1;
 I_sec = 1;
@@ -41,6 +48,8 @@ The first line, **mph_fileloc**, specifies the folder path of where to save the 
 **turns** refers to number of turns.
 
 All units are in mm and below shows a figure of a toroidal inductor with the parameters labeled.
+
+If the variable begins with **out_**, it refers to the outer toroid. If the variable begins with **in_**, it refers to the inner toroid.
 
 ### Simulation Parameters Initialization
 For simulation, the transformer is injected by a lumped port current source with amplitude **I_prim** at the primary and **I_sec** at the secondary, and frequency of **freq**. The units are in A and Hz. 
